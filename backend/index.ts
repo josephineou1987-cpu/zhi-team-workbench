@@ -17,7 +17,7 @@ async function rest(path:string,method='GET',body?:any,prefer='return=representa
  if(secret.startsWith('eyJ'))headers.Authorization='Bearer '+secret;
  const r=await fetch(Deno.env.get('SUPABASE_URL')+'/rest/v1/'+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body)});
  if(!r.ok){console.error('Database request failed',r.status,path.split('?')[0]);throw new Error('数据库暂不可用，请稍后重试')}
- return r.status===204?null:r.json();
+ return r.status===204||prefer.includes('return=minimal')?null:r.json();
 }
 function visible(data:any,user:any){const d=structuredClone(data);if(user.role!=='admin')for(const k of personal)d[k]=(d[k]||[]).filter((x:any)=>x.owner===user.name);return d}
 function allowed(user:any,op:any,old:any){
