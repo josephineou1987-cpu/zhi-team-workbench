@@ -33,3 +33,9 @@ end; $$;
 revoke all on function public.zhi_rate_limit(text) from public,anon,authenticated;
 grant execute on function public.zhi_rate_limit(text) to service_role;
 insert into public.zhi_state(id,data) values(1,'{"tasks":[],"updates":[],"reports":[],"shares":[],"minutes":[],"insights":[],"leaves":[],"assignmentRules":[],"weeklyPlans":{},"communityChecks":{},"ruleNotes":"","roster":[]}'::jsonb) on conflict(id) do nothing;
+
+-- AI provider key: server-only access, never returned to the frontend.
+create table if not exists public.zhi_ai_config (id integer primary key check(id=1), provider text not null check(provider in ('deepseek','openai')), model text not null, api_key text not null, updated_at timestamptz not null default now());
+alter table public.zhi_ai_config enable row level security;
+revoke all on public.zhi_ai_config from anon,authenticated;
+grant all on public.zhi_ai_config to service_role;
