@@ -1,2 +1,2 @@
-// HTTPS backend API root. Never put secrets here.
-window.WORKBENCH_API_BASE = '';
+// Public backend URL only; no secrets.
+window.WORKBENCH_API_BASE = 'https://khlvpcmfygqyakhzpoax.supabase.co/functions/v1/zhi-workbench';

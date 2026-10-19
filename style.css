@@ -51,3 +51,5 @@
  .personwrap .personrole{display:block;font-size:11px;line-height:1.4}
  .welcomefoot{font-size:12px;gap:4px}
 }
+
+.cloudstatus{position:fixed;right:18px;bottom:12px;z-index:90;background:#e8f4ed;color:#246747;padding:7px 13px;border:1px solid #b9d9c5;border-radius:20px;font-size:12px}.cloudwarning{background:#fff0eb;color:#9d3329;border-color:#f1bdb6}

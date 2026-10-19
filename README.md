@@ -1,7 +1,11 @@
 # 致知 · 团队工作台
 
-GitHub Pages 前端版本。发布来源：main 分支根目录。
+地址：https://josephineou1987-cpu.github.io/zhi-team-workbench/
 
-账号密码验证、共享数据、上传和定时报告需要独立后台。当前登录关闭，不包含密码或服务密钥。配置 config.js 中 WORKBENCH_API_BASE 为 HTTPS API 根地址，后端须允许本 Pages 来源的 CORS 和安全会话。
+GitHub Pages 托管前端，Supabase Edge Function zhi-workbench 和四张 zhi_ 前缀数据库表提供登录与共享记录。密码仅以加盐 PBKDF2 摘要保存在数据库，不在仓库中。
 
-任务演示数据保存在浏览器 localStorage；不会跨设备共享。不要在公开代码中存储真实工作记录或密钥。
+员工仅修改自己的记录；David/吴权为管理员，可查看全员工作并管理规则与分工。会话八小时过期，退出立即撤销。多人并发修改不同记录自动合并，同一记录冲突则保留草稿并提示。共享数据每二十秒刷新。
+
+前端 config.js 仅含公开 API 地址。backend/index.ts 为已部署函数源码；schema.sql 为已应用结构参考，不含账号凭据。
+
+AI 模型、文件上传与后台定时任务尚未接入；报告目前按已提交的记录进行规则汇总。
